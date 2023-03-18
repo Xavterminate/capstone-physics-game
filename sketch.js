@@ -19,7 +19,7 @@ function setup() {
   enemyHealth=3;
   playerOptions={
     isStatic:false,
-   restitution:0.0001
+   restitution:0
   }
   coins=0;
   attack=false;
@@ -50,10 +50,12 @@ function draw()
     coin.addImage(coinImg);
     coin.scale=0.07;
   }
-  if(player.position.y>600||player.position.y<0||player.position.x>600||player.position.x<0){
+  if(player.position.y>650||player.position.y<-50||player.position.x>650||player.position.x<-50){
     player.position.x=300;
     player.position.y=300;
-    Matter.Body.applyForce(player,{x:0,y:0},{x:0,y:0});
+    //Matter.Body.applyForce(player,{x:0,y:0},{x:0,y:0});
+    Matter.Body.setVelocity(player,{x:0,y:0});
+   
   }
 
   text("coins:"+coins,20,20);
@@ -131,20 +133,20 @@ function draw()
  
   
   if (keyDown(UP_ARROW)){
-    Matter.Body.applyForce(player,{x:0,y:0},{x:0,y:-0.01})
+    Matter.Body.applyForce(player,{x:0,y:0},{x:0,y:-0.005})
   }
   if (keyDown(DOWN_ARROW)){
-    Matter.Body.applyForce(player,{x:0,y:0},{x:0,y:0.01})
+    Matter.Body.applyForce(player,{x:0,y:0},{x:0,y:0.005})
     attack=true;
   } else{
     attack=false;
   }
   if (keyDown(RIGHT_ARROW)){
-    Matter.Body.applyForce(player,{x:0,y:0},{x:0.01,y:0})
+    Matter.Body.applyForce(player,{x:0,y:0},{x:0.005,y:0})
     
   }
   if (keyDown(LEFT_ARROW)){
-    Matter.Body.applyForce(player,{x:-0,y:0},{x:-0.01,y:0})
+    Matter.Body.applyForce(player,{x:-0,y:0},{x:-0.005,y:0})
    
   }
   
